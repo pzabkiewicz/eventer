@@ -1,0 +1,14 @@
+<div class="container" fxFlext fxLayout="row wrap" fxLayoutAlign="space-between">
+    <div fxFlex="0 0 33%">
+        <mat-card class="event-item__add" style="height: 200px; margin: 16px;">
+            <mat-card-header>
+                <mat-card-title>Add new event...</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions class="event-item__add-actions">
+                <button mat-button color="accent">Simple</button>
+                <button mat-button color="accent">Advanced</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <app-event-item fxFlex="0 0 33%" *ngFor="let event of events" [name]="event"></app-event-item>
+</div>

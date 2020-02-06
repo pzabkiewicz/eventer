@@ -1,0 +1,21 @@
+.container {
+    margin: 32px;   
+}
+
+.event-item__add {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-item__add-actions {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.event-item__add-actions button {
+    flex-grow: 1;
+    align-self: flex-end;
+    margin: 0;
+}
