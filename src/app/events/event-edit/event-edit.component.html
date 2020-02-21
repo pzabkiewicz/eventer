@@ -1,0 +1,49 @@
+<div class="event-edit-container" 
+     fxLayout="column"
+     fxLayoutGap="16px">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Main event information</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div gdAuto="row" 
+             gdColumns.gt-sm="50% 50%" 
+             gdGap.gt-sm="0.5rem">
+                <mat-form-field gdColumn.gt-xs="span 2">
+                    <mat-label>Event name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field gdColumn.gt-xs="span 2">
+                    <mat-label>Location</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>                  
+                <mat-form-field>
+                    <mat-label>Start hour</mat-label>
+                    <input matInput type="time">
+                </mat-form-field>
+                <mat-form-field gdColumn.gt-xs="span 2">
+                    <mat-label>Price</mat-label>
+                    <input matInput type="number">
+                </mat-form-field>
+                <mat-form-field gdColumn.gt-xs="span 2">
+                    <mat-label>Image</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field gdColumn.gt-xs="span 2">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Discounts</mat-panel-title>
+            <mat-panel-description>Choose discounts that can be used in the event</mat-panel-description>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</div>

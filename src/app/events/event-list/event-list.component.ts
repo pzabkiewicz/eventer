@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { EventSummary } from 'src/app/model/event-summary';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-list',
@@ -19,9 +20,13 @@ export class EventListComponent implements OnInit {
       "https://wedrowkipub.pl/wp-content/uploads/2018/01/logo-kwadrat_logo-white.png")
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onAddSimpleClick() {
+    this.router.navigate(['/events/1/edit']);
   }
 
 }

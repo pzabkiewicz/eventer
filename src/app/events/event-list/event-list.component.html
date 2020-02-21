@@ -1,4 +1,10 @@
-<div class="container">
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="32px">
+    <mat-card>
+        <mat-card-actions style="padding: 0; margin: 0">
+            <button mat-button color="accent" (click)="onAddSimpleClick()">Simple</button>
+            <button mat-button color="accent">Advanced</button>
+        </mat-card-actions>
+    </mat-card>
     <div fxLayout.lt-sm="column"
          fxLayout="row wrap"
          fxLayoutGap="32px grid"
