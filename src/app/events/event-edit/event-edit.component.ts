@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { 
+  FormBuilder, 
+  FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-event-edit',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventEditComponent implements OnInit {
 
-  constructor() { }
+  eventCreationForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { 
+    this.eventCreationForm = this.fb.group({
+      evName: [''],
+      evLocation: [''],
+      evDate: [null],
+      evHour: [null],
+      evPrice: [0.00],
+      evImgPath: [''],
+      evDescription: ['']
+    });
+  }
 
   ngOnInit() {
+  }
+
+  onSave() {
+    console.log(this.eventCreationForm);
   }
 
 }
