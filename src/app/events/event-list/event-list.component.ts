@@ -16,7 +16,7 @@ export class EventListComponent implements OnInit {
     private eventService: EventService) { }
 
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    this.events = this.eventService.getEventSummaries();
   }
 
   onAddSimpleClick() {
