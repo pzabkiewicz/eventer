@@ -1,0 +1,24 @@
+<form [formGroup]="discountForm" (ngSubmit)="onSave()"
+      gdAuto="row"
+      gdGap="16px"
+      gdColumns="90% 10%">
+    <mat-form-field gdColumn="span 2">
+        <mat-label>Summary</mat-label>
+        <input matInput formControlName="summary">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" formControlName="amount">
+    </mat-form-field>
+   <mat-form-field>
+        <mat-label>Unit</mat-label>
+        <mat-select formControlName="amountUnit">
+            <mat-option *ngFor="let unit of amountUnitOptions" [value]="unit">{{ unit }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field gdColumn="span 2">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" gdGridAlign="start">Save</button>
+</form>

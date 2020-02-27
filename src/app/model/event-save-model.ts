@@ -1,4 +1,4 @@
-export class DiscountsSaveModel {
+export class EventCreationDiscountSaveModel {
     
     constructor(
         id: string,
@@ -18,7 +18,7 @@ export class EventSaveModel {
         public places: number, 
         public imgPath: string,
         public description: string,
-        public discounts: Array<DiscountsSaveModel>
+        public discounts: EventCreationDiscountSaveModel[]
     ) {}
 
 }

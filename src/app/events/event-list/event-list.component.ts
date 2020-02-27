@@ -23,4 +23,8 @@ export class EventListComponent implements OnInit {
     this.router.navigate(['/events/1/edit']);
   }
 
+  onDiscountsClick() {
+    this.router.navigate(['/discounts']);
+  }
+
 }

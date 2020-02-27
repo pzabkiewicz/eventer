@@ -11,6 +11,9 @@ import { EventItemComponent } from './events/event-list/event-item/event-item.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
+import { DiscountsComponent } from './discounts/discounts.component';
+import { DiscountListComponent } from './discounts/discount-list/discount-list.component';
+import { DiscountItemComponent } from './discounts/discount-list/discount-item/discount-item.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
     AppComponent,
     EventListComponent,
     EventItemComponent,
-    EventEditComponent
+    EventEditComponent,
+    DiscountsComponent,
+    DiscountListComponent,
+    DiscountItemComponent
   ],
   imports: [
     BrowserModule,

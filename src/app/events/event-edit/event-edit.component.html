@@ -50,7 +50,7 @@
                 <mat-panel-title>Discounts</mat-panel-title>
             </mat-expansion-panel-header>
             <div formArrayName="discounts" *ngFor="let discount of getDiscounts(); let i=index">
-                <mat-checkbox [formControlName]="i">{{ discounts[i].description }}</mat-checkbox>
+                <mat-checkbox [formControlName]="i">{{ discounts[i].summary }}</mat-checkbox>
             </div>
         </mat-expansion-panel>
         <button mat-button type="submit" color="accent">Save</button>

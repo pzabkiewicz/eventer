@@ -1,0 +1,8 @@
+<div gdColumns="1fr" gdColumns.gt-xs="1fr 1fr">
+   <div gdColumn.gt-xs="span 2">
+     <button mat-raised-button color="accent" (click)="onAdd()">Add</button>
+   </div> 
+   <app-discount-list [discounts]="getDiscounts()"></app-discount-list>
+   <app-discount-item (onDiscountSave)="getDiscounts()"></app-discount-item>
+</div>
+

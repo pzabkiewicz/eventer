@@ -3,13 +3,17 @@ import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormControl,
   AbstractControl
 } from '@angular/forms';
 import { EventService } from '../event.service';
-import { EventSummary } from 'src/app/model/event-summary';
 import { Router } from '@angular/router';
-import { EventSaveModel, DiscountsSaveModel } from 'src/app/model/event-save-model';
+import { EventSaveModel, EventCreationDiscountSaveModel } from 'src/app/model/event-save-model';
+import { DiscountSaveModel } from 'src/app/model/discount-save-model';
+import { DiscountService } from 'src/app/discounts/discount.service';
+
+class DiscountReadModel {
+  constructor(public summary: string, public checked: boolean) {}
+}
 
 @Component({
   selector: 'app-event-edit',
@@ -19,14 +23,14 @@ import { EventSaveModel, DiscountsSaveModel } from 'src/app/model/event-save-mod
 export class EventEditComponent implements OnInit {
 
   eventForm: FormGroup;
-  discounts: { id: string, description: string, value: boolean }[] = [
-    { id: "1", description: 'discount#1', value: false },
-    { id: "2", description: 'discount#2', value: true }
-  ];
+  discounts: DiscountReadModel[] = [];
 
   constructor(private router: Router,
               private fb: FormBuilder,
-              private eventService: EventService) {
+              private eventService: EventService,
+              private discountService: DiscountService) {
+    
+    this.discounts = this.mapDiscountsToSummary(this.discountService.getDiscounts());
     this.initEventForm();
   }
 
@@ -34,8 +38,6 @@ export class EventEditComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.eventForm);
-    // TODO: Replace then with other object than EventSummary
     const newEvent = new EventSaveModel(
       this.eventForm.get('evName').value,
       this.eventForm.get('evLocation').value,
@@ -48,8 +50,12 @@ export class EventEditComponent implements OnInit {
       this.mapDiscountsToSaveModel(this.getDiscounts())
     );
     this.eventService.save(newEvent);
-    // temporarily navigate hardcoded in this place
+    // TODO: temporarily navigate hardcoded in this place
     this.router.navigate(['events']);
+  }
+
+  getDiscounts() {
+    return (<FormArray>this.eventForm.get('discounts')).controls;
   }
 
   private initEventForm() {
@@ -65,15 +71,17 @@ export class EventEditComponent implements OnInit {
     });
   }
 
+
+
   private initDiscounts() {
-    return this.fb.array(this.discounts.map(d => this.fb.control(d.value)));
+    return this.fb.array(this.discounts.map(d => this.fb.control(d.checked)));
   }
 
-  getDiscounts() {
-    return (<FormArray>this.eventForm.get('discounts')).controls;
+  private mapDiscountsToSaveModel(discountFormControls: AbstractControl[]): EventCreationDiscountSaveModel[]  {
+    return discountFormControls.map((selected, i) => new EventCreationDiscountSaveModel(this.discounts[i].summary, selected.value))
   }
 
-  mapDiscountsToSaveModel(discountFormControls: AbstractControl[]): DiscountsSaveModel[]  {
-    return discountFormControls.map((selected, i) => new DiscountsSaveModel(this.discounts[i].id, selected.value))
+  private mapDiscountsToSummary(discountSaveModelList: DiscountSaveModel[]) {
+    return discountSaveModelList.map(d => new DiscountReadModel(d.summary, false));
   }
 }
