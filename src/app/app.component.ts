@@ -1,4 +1,23 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+interface SidenavLinks {
+  name: string;
+  link: string[];
+}
+
+// 'expand_more' : 'chevron_right'
+
+const SIDENAV_LINKS = [
+  { 
+    name: 'Events',
+    link: ['/events'] 
+  },
+  {
+    name: 'Discounts', 
+    link: ['discounts']
+  }
+];
 
 @Component({
   selector: 'app-root',
@@ -6,6 +25,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'eventer';
-  shouldRun = true;
+
+  dataSource: SidenavLinks[];
+
+  constructor(private router: Router) {
+    this.dataSource = SIDENAV_LINKS;
+  }
+
+  navigate(link: string[]) {
+    this.router.navigate(link);
+  }
+
 }

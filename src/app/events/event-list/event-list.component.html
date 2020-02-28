@@ -1,4 +1,4 @@
-<div class="container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="32px">
+<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="32px">
     <mat-card>
         <mat-card-actions style="padding: 0; margin: 0">
             <button mat-button color="accent" (click)="onAddSimpleClick()">Simple</button>
@@ -10,18 +10,6 @@
          fxLayout="row wrap"
          fxLayoutGap="32px grid"
          fxLayoutAlign="space-between">
-         <!-- TODO: Make from this element another component -->
-        <!-- <div class="event event-item__add">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>Add new event...</mat-card-title>
-            </mat-card-header>
-            <mat-card-actions class="event-item__add-actions">
-                <button mat-button color="accent">Simple</button>
-                <button mat-button color="accent">Advanced</button>
-            </mat-card-actions>
-        </mat-card>
-    </div> -->
         <div *ngFor="let event of events"
               fxFlex="0 1 calc(33% - 16px)"
               fxFlex.lt-md="0 1 calc(50% - 16px)"

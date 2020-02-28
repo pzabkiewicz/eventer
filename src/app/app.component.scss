@@ -1,12 +1,13 @@
-// .example-container {
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     background: #ccc;
-//   }
+mat-sidenav {
+    width: 290px;
+}
 
-.container {
-    margin: 2rem;
+.sidenav-links__container {
+    margin: 32px;
+}
+
+.sidenav-links__button {
+    width: 100%;
+    padding: 0px
+    
 }
