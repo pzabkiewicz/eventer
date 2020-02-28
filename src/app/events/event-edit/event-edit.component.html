@@ -1,4 +1,4 @@
-<mat-accordion>
+<mat-accordion [multi]="true">
     <form [formGroup]="eventForm"
           (ngSubmit)="onSave()"
           fxLayout="column" fxLayoutGap="0.5rem">

@@ -6,8 +6,6 @@ interface SidenavLinks {
   link: string[];
 }
 
-// 'expand_more' : 'chevron_right'
-
 const SIDENAV_LINKS = [
   { 
     name: 'Events',

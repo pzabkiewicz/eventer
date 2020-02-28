@@ -6,25 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MaterialModule } from './material.module';
-import { EventListComponent } from './events/event-list/event-list.component';
-import { EventItemComponent } from './events/event-list/event-item/event-item.component';
+import { EventDashboardComponent } from './events/event-dashboard/event-dashboard.component';
+import { EventItemComponent } from './events/event-dashboard/event-item/event-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { DiscountListComponent } from './discounts/discount-list/discount-list.component';
-import { DiscountItemComponent } from './discounts/discount-list/discount-item/discount-item.component';
+import { DiscountEditComponent } from './discounts/discount-edit/discount-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventListComponent,
+    EventDashboardComponent,
     EventItemComponent,
     EventEditComponent,
     DiscountsComponent,
     DiscountListComponent,
-    DiscountItemComponent
+    DiscountEditComponent
   ],
   imports: [
     BrowserModule,

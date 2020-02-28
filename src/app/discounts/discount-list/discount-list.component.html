@@ -1,3 +1,11 @@
-<mat-nav-list>
-    <mat-list-item *ngFor="let discount of discounts">{{ discount.summary }}</mat-list-item>
-</mat-nav-list>
+<mat-card fxLayout="column" style="height: 100%">
+    <div class="discount-list__title" fxFlex="0 1 auto">
+        <h3>Discounts</h3>
+    </div>
+    <mat-nav-list fxFlex="0 1 100%">
+        <mat-list-item *ngFor="let discount of discounts">{{ discount.summary }}</mat-list-item>
+    </mat-nav-list>
+    <div class="discount-list__actions" fxFlex="0 1 auto">
+        <button mat-raised-button color="accent" (click)="onAdd()">Add</button>
+    </div>
+</mat-card>
