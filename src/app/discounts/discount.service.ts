@@ -1,8 +1,11 @@
 import { Injectable } from "@angular/core";
 import { DiscountSaveModel } from '../model/discount-save-model';
+import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class DiscountService {
+
+    discountsChanged: Subject<DiscountSaveModel[]> = new Subject<DiscountSaveModel[]>();
 
     private discounts: DiscountSaveModel[] = [
         new DiscountSaveModel("Students", 51, "%", "This is a discount for people who has valid student card."),
@@ -17,5 +20,6 @@ export class DiscountService {
 
     save(discount: DiscountSaveModel) {
         this.discounts.push(discount);
+        this.discountsChanged.next(this.discounts.slice());
     }
 }

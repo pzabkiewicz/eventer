@@ -10,9 +10,6 @@ import { DiscountSaveModel } from 'src/app/model/discount-save-model';
 })
 export class DiscountEditComponent implements OnInit {
 
-  @Output()
-  onDiscountSave = new EventEmitter<void>();
-
   discountForm: FormGroup;
   amountUnitOptions = ['%', 'abs'];
 
@@ -35,10 +32,7 @@ export class DiscountEditComponent implements OnInit {
     );
     this.discountService.save(discount);  
     this.discountForm.reset();
-    this.onDiscountSave.emit(null);
   }
-
-
 
   private initForm() {
     this.discountForm = this.fb.group({
