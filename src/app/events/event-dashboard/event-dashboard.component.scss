@@ -1,0 +1,19 @@
+.event-item__add {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.event-item__add-actions {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.event-item__add-actions button {
+    flex-grow: 1;
+    align-self: flex-end;
+    margin: 0;
+}
