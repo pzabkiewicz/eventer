@@ -14,6 +14,7 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { DiscountListComponent } from './discounts/discount-list/discount-list.component';
 import { DiscountEditComponent } from './discounts/discount-edit/discount-edit.component';
+import { DiscountDetailsComponent } from './discounts/discount-details/discount-details.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DiscountEditComponent } from './discounts/discount-edit/discount-edit.c
     EventEditComponent,
     DiscountsComponent,
     DiscountListComponent,
-    DiscountEditComponent
+    DiscountEditComponent,
+    DiscountDetailsComponent
   ],
   imports: [
     BrowserModule,

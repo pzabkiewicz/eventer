@@ -1,0 +1,21 @@
+<mat-card fxLayout="column">
+
+    <div class="discount-form__title" fxFlex="0 1 auto">
+        <h3>Discount details</h3>
+    </div>
+
+    <div fxFlex="0 1 100%">
+        <p>{{ discount.summary }}</p>
+    </div>
+
+    <div class="discount-form__actions" 
+         fxFlex="0 1 auto"
+         fxLayout="row" 
+         fxLayoutGap="8px">
+        <button mat-raised-button color="accent" type="button">
+            Back<mat-icon>keyboard_return</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" type="button">Edit</button>
+    </div>
+
+</mat-card>

@@ -4,6 +4,7 @@ import { EventDashboardComponent } from './events/event-dashboard/event-dashboar
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountEditComponent } from './discounts/discount-edit/discount-edit.component';
 import { DiscountsComponent } from './discounts/discounts.component';
+import { DiscountDetailsComponent } from './discounts/discount-details/discount-details.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'events', component: EventDashboardComponent },
   { path: 'events/:id/edit', component: EventEditComponent },
   { path: 'discounts', component: DiscountsComponent, children: [
-      { path: 'discounts/:id/edit', component: DiscountEditComponent }
+      { path: ':id/details', component: DiscountDetailsComponent },
+      { path: ':id/edit', component: DiscountEditComponent }
     ]
   }
 ];

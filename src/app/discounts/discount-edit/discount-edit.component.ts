@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DiscountService } from '../discount.service';
 import { DiscountSaveModel } from 'src/app/model/discount-save-model';
