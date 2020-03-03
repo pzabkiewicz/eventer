@@ -3,7 +3,8 @@
         <h3>Discounts</h3>
     </div>
     <mat-nav-list fxFlex="0 1 100%">
-        <mat-list-item *ngFor="let discount of discounts" (click)="onItemClick(discount)">
+        <mat-list-item *ngFor="let discount of discounts"
+                       (click)="onItemClick(discount)">
             {{ discount.summary }}
         </mat-list-item>
     </mat-nav-list>

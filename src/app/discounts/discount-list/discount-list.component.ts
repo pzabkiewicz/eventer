@@ -16,20 +16,16 @@ export class DiscountListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if (this.discounts.length > 0) {
-      this.onItemClick(this.discounts[0]);
-    }
   }
 
   onCreate() {
-    // TODO: replace with id ?
-    this.router.navigate(["1/edit"], { relativeTo: this.route });
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
   onItemClick(discount: DiscountSummary) {
     // TODO: Replace with id
     const id = discount.summary;
-    this.router.navigate([`${id}/details`], { relativeTo: this.route })
+    this.router.navigate([`${id}`], { relativeTo: this.route })
   }
 
 }

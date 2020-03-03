@@ -1,23 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DiscountSummary } from 'src/app/model/discount-summary';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-discount-details',
   templateUrl: './discount-details.component.html',
   styleUrls: ['./discount-details.component.scss']
 })
-export class DiscountDetailsComponent implements OnInit {
+export class DiscountDetailsComponent implements OnInit, OnDestroy {
 
   discount: DiscountSummary = null;
+  discountSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
+    this.discountSubscription = this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       this.discount = new DiscountSummary(id);
     });
+  }
+
+  onBack() {
+    this.router.navigate(['/discounts'], { relativeTo: this.route });
+  }
+
+  onEdit() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  ngOnDestroy() {
+    this.discountSubscription.unsubscribe();
   }
 
 }
