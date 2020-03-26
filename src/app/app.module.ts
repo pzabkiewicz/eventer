@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountsModule } from './discounts/discounts.module';
+import { HeaderComponent } from './shared/header/header.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DiscountsModule } from './discounts/discounts.module';
     AppComponent,
     EventDashboardComponent,
     EventItemComponent,
-    EventEditComponent
+    EventEditComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

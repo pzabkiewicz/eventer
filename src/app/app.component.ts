@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Infrastructure } from './shared/infrastructure';
 
 interface SidenavLinks {
   name: string;
@@ -7,12 +8,12 @@ interface SidenavLinks {
 }
 
 const SIDENAV_LINKS = [
-  { 
+  {
     name: 'Events',
-    link: ['/events'] 
+    link: ['/events']
   },
   {
-    name: 'Discounts', 
+    name: 'Discounts',
     link: ['discounts']
   }
 ];
@@ -24,14 +25,22 @@ const SIDENAV_LINKS = [
 })
 export class AppComponent {
 
+  isMobileScreen = true;
   dataSource: SidenavLinks[];
 
   constructor(private router: Router) {
     this.dataSource = SIDENAV_LINKS;
+    this.setMobileScreenWidth();
   }
 
   navigate(link: string[]) {
     this.router.navigate(link);
   }
 
+  private setMobileScreenWidth() {
+    this.isMobileScreen = window.innerWidth < Infrastructure.SM_MIN_BREAKBOINT;
+    window.onresize = () => {
+      this.isMobileScreen = window.innerWidth < Infrastructure.SM_MIN_BREAKBOINT;
+    };
+  }
 }
