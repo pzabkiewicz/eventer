@@ -2,10 +2,10 @@
 
 <mat-sidenav-container style="height: 100%;">
 
-    <mat-sidenav #sidenav 
-                 class="container" 
+    <mat-sidenav #sidenav
+                 class="container"
                  [mode]="isMobileScreen ? 'over' : 'side'"
-                 [opened]="!isMobileScreen">
+                 [opened]="loggedIn && !isMobileScreen">
         <div class="sidenav-links__container">
             <button *ngFor="let sidenavLink of dataSource"
                     class="sidenav-links__button"

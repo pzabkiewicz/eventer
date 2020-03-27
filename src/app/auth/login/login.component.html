@@ -1,0 +1,35 @@
+<mat-card class="login__container" 
+          fxLayout="row wrap"
+          fxLayoutAlign="start center"
+          [formGroup]="loginForm">
+
+        <mat-form-field fxFlex="1 1 100%" appearance="fill" class="login__form-item">
+            <mat-label>Enter your email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="loginForm.get('email').invalid">
+                {{ loginForm.get('email').hasError('email') ? 'Not a valid email' : 'You must enter a value' }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="1 1 100%" appearance="fill" class="login__form-item">
+            <mat-label>Enter your password</mat-label>
+            <input matInput
+                   [type]="hide ? 'password' : 'text'"
+                   formControlName="password"
+                   required>
+            <button mat-icon-button (click)="hide = !hide" matSuffix>
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="loginForm.get('password').invalid">
+                You must enter a value
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button 
+                color="accent"
+                (click)="onLogin()">
+        
+                Login
+        </button>
+
+</mat-card>

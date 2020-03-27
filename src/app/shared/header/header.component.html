@@ -1,9 +1,12 @@
 <mat-toolbar color="accent" fxLayout fxLayoutGap="16px">
-    <button mat-icon-button fxHide.gt-xs (click)="onClickSidenavToggle()">
+    <button mat-icon-button 
+            *ngIf="loggedIn"
+            fxHide.gt-xs
+            (click)="onClickSidenavToggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>Eventer</span>
+    <span class="header__link">Eventer</span>
     <span fxFlex="1 1 auto"></span>
-    <span>Sign up</span>
-    <span>Login</span>
+    <span class="header__link">Sign up</span>
+    <span class="header__link" (click)="onLoginNavigate()">{{ loggedIn ? 'Logout' : 'Login' }}</span>
 </mat-toolbar>

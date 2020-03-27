@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountsModule } from './discounts/discounts.module';
 import { HeaderComponent } from './shared/header/header.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HeaderComponent } from './shared/header/header.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AuthModule,
     ReactiveFormsModule,
     DiscountsModule,
     AppRoutingModule,

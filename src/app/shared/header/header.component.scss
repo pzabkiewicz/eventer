@@ -1,3 +1,12 @@
 .sidenav-button {
     padding: 0;
 }
+
+.header__link {
+    cursor: pointer;
+}
+
+.header__link:active,
+.header__link:hover {
+    color: rgb(192, 188, 188);
+}

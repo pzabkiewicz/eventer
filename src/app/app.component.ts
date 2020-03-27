@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Infrastructure } from './shared/infrastructure';
+import { AuthService } from './auth/auth.service';
 
 interface SidenavLinks {
   name: string;
@@ -23,14 +24,22 @@ const SIDENAV_LINKS = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  loggedIn: boolean;
   isMobileScreen = true;
   dataSource: SidenavLinks[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private authService: AuthService) {
     this.dataSource = SIDENAV_LINKS;
     this.setMobileScreenWidth();
+  }
+
+  ngOnInit() {
+    this.authService.loggedIn.subscribe( (loggedIn: boolean) => {
+      this.loggedIn = loggedIn;
+    })
   }
 
   navigate(link: string[]) {
