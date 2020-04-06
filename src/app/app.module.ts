@@ -14,6 +14,7 @@ import { EventEditComponent } from './events/event-edit/event-edit.component';
 import { DiscountsModule } from './discounts/discounts.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     AuthModule,
     ReactiveFormsModule,
+    EventsModule,
     DiscountsModule,
     AppRoutingModule,
     FlexLayoutModule,

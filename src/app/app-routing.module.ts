@@ -1,21 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EventDashboardComponent } from './events/event-dashboard/event-dashboard.component';
-import { EventEditComponent } from './events/event-edit/event-edit.component';
-import { DiscountEditComponent } from './discounts/discount-edit/discount-edit.component';
-import { DiscountsComponent } from './discounts/discounts.component';
-import { DiscountDetailsComponent } from './discounts/discount-details/discount-details.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: '/events', pathMatch: 'full' },
-  { path: 'events', component: EventDashboardComponent },
-  { path: 'events/:id/edit', component: EventEditComponent },
-  { path: 'discounts', component: DiscountsComponent, children: [
-      { path: ':id/details', component: DiscountDetailsComponent },
-      { path: ':id/edit', component: DiscountEditComponent }
-    ]
-  }
 ];
 
 @NgModule({

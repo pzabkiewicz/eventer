@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   onLoginNavigate() {
     if (this.loggedIn) {
-      this.authService.loggedIn.next(false);
+      this.authService.logout();
     }
     this.router.navigate(["/login"]);
   }

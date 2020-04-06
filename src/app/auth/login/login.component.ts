@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
 
     this.loginForm = this.fb.group({
       'email': this.fb.control('', [Validators.email, Validators.required]),
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.loggedIn.next(true);
+    this.authService.login();
+    this.router.navigate([this.authService.redirectUrl]);
   }
 
 }
