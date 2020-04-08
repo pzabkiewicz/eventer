@@ -3,13 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { DiscountsComponent } from './discounts.component';
 import { DiscountEditComponent } from './discount-edit/discount-edit.component';
 import { DiscountDetailsComponent } from './discount-details/discount-details.component';
+import { AuthGuard } from '../auth/auth.guard';
+import { CanDeactivateGuard } from '../shared/guards/can-deactivate.guard';
 
 
 const routes: Routes = [
-  { path: 'discounts', component: DiscountsComponent, children: [
-      { path: 'new', component: DiscountEditComponent },
+  { 
+    path: 'discounts', 
+    component: DiscountsComponent, 
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'new', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] },
       { path: ':id', component: DiscountDetailsComponent },
-      { path: ':id/edit', component: DiscountEditComponent }
+      { path: ':id/edit', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] }
     ]
   }
 ];

@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 import { EventSaveModel, EventCreationDiscountSaveModel } from 'src/app/model/event-save-model';
 import { DiscountSaveModel } from 'src/app/model/discount-save-model';
 import { DiscountService } from 'src/app/discounts/discount.service';
+import { ComponentCanDeactivate } from 'src/app/shared/guards/can-deactivate.guard';
+import { Observable } from 'rxjs';
+import { DialogService } from 'src/app/shared/modals/dialog.service';
 
 class DiscountReadModel {
   constructor(public summary: string, public checked: boolean) {}
@@ -20,21 +23,29 @@ class DiscountReadModel {
   templateUrl: './event-edit.component.html',
   styleUrls: ['./event-edit.component.scss']
 })
-export class EventEditComponent implements OnInit {
+export class EventEditComponent implements OnInit, ComponentCanDeactivate {
 
   eventForm: FormGroup;
   discounts: DiscountReadModel[] = [];
 
-  constructor(private router: Router,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
+              private router: Router,
               private eventService: EventService,
-              private discountService: DiscountService) {
+              private discountService: DiscountService,
+              private dialogService: DialogService) {
     
     this.discounts = this.mapDiscountsToSummary(this.discountService.getDiscounts());
     this.initEventForm();
   }
 
   ngOnInit() {
+  }
+
+  canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
+    if (this.eventForm.pristine) {
+      return true;
+    }
+    return this.dialogService.confirm("Would you like discard the changes without saving?");
   }
 
   onSave() {

@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.authService.login();
-    this.router.navigate([this.authService.redirectUrl]);
+    const url = this.authService.redirectUrl ? this.authService.redirectUrl : '/events';
+    this.router.navigate([url]);
   }
 
 }
