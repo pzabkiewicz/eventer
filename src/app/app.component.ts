@@ -26,7 +26,7 @@ const SIDENAV_LINKS = [
 })
 export class AppComponent implements OnInit {
 
-  loggedIn: boolean;
+  isAuthenticated: boolean;
   isMobileScreen = true;
   dataSource: SidenavLinks[];
 
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.loggedIn.subscribe( (loggedIn: boolean) => {
-      this.loggedIn = loggedIn;
+      this.isAuthenticated = loggedIn;
     })
   }
 

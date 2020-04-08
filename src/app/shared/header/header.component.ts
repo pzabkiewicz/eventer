@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedIn: boolean;
+  isAuthenticated: boolean;
 
   @Output() 
   sidenavToggled = new EventEmitter<void>();
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.loggedIn.subscribe( (loggedIn: boolean) => { 
-      this.loggedIn = loggedIn
+      this.isAuthenticated = loggedIn
     });
   }
 
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLoginNavigate() {
-    if (this.loggedIn) {
+    if (this.isAuthenticated) {
       this.authService.logout();
     }
     this.router.navigate(["/login"]);

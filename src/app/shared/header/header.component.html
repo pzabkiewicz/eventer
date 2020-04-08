@@ -1,6 +1,6 @@
 <mat-toolbar color="accent" fxLayout fxLayoutGap="16px">
     <button mat-icon-button 
-            *ngIf="loggedIn"
+            *ngIf="isAuthenticated"
             fxHide.gt-xs
             (click)="onClickSidenavToggle()">
         <mat-icon>menu</mat-icon>
