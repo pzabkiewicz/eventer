@@ -11,5 +11,13 @@ mat-card {
 }
 
 .discount-form__actions {
-    padding-top: 16px;
+    padding-top: 1rem;
+}
+
+.discount-details__prop-title {
+    font-weight: bold;
+}
+
+.discount-details__prop {
+    font-size: 0.8rem;
 }

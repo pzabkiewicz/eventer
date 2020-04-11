@@ -1,6 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { DiscountSummary } from 'src/app/model/discount-summary';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Discount } from 'src/app/model/discount';
 
 @Component({
   selector: 'app-discount-list',
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class DiscountListComponent implements OnInit {
 
   @Input()
-  discounts: DiscountSummary[] = [];
+  discounts: Discount[] = [];
 
   constructor(private router: Router, 
               private route: ActivatedRoute) { }
@@ -19,13 +20,7 @@ export class DiscountListComponent implements OnInit {
   }
 
   onCreate() {
-    this.router.navigate(['new'], { relativeTo: this.route });
-  }
-
-  onItemClick(discount: DiscountSummary) {
-    // TODO: Replace with id
-    const id = discount.summary;
-    this.router.navigate([`${id}`], { relativeTo: this.route })
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
 }

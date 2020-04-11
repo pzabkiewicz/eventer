@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DiscountSummary } from '../model/discount-summary';
 import { DiscountService } from './discount.service';
-import { DiscountSaveModel } from '../model/discount-save-model';
+import { Discount } from '../model/discount';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class DiscountsComponent implements OnInit, OnDestroy {
 
-  discounts: DiscountSaveModel[] = [];
+  discounts: Discount[] = [];
   discountsSubscription: Subscription;
 
   constructor(private discountService: DiscountService) { }
@@ -19,13 +19,9 @@ export class DiscountsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.discounts = this.discountService.getDiscounts();
     this.discountsSubscription = this.discountService.discountsChanged
-      .subscribe((discounts: DiscountSaveModel[]) => {
+      .subscribe((discounts: Discount[]) => {
         this.discounts = discounts;
       });
-  }
-
-  getDiscounts(): DiscountSummary[] {
-    return this.discounts.map(d => new DiscountSummary(d.summary));
   }
 
   ngOnDestroy() {

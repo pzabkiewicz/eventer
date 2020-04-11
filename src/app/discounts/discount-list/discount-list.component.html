@@ -3,9 +3,10 @@
         <h3>Discounts</h3>
     </div>
     <mat-nav-list fxFlex="0 1 100%">
-        <mat-list-item *ngFor="let discount of discounts"
-                       (click)="onItemClick(discount)">
-            {{ discount.summary }}
+        <mat-list-item *ngFor="let discount of discounts; let i = index"
+                       [routerLink]="['/discounts', i]"
+                       routerLinkActive="active">
+            {{ discount.name }}
         </mat-list-item>
     </mat-nav-list>
     <div class="discount-list__actions" fxFlex="0 1 auto">

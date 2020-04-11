@@ -8,7 +8,7 @@ import {
 import { EventService } from '../event.service';
 import { Router } from '@angular/router';
 import { EventSaveModel, EventCreationDiscountSaveModel } from 'src/app/model/event-save-model';
-import { DiscountSaveModel } from 'src/app/model/discount-save-model';
+import { Discount } from 'src/app/model/discount';
 import { DiscountService } from 'src/app/discounts/discount.service';
 import { ComponentCanDeactivate } from 'src/app/shared/guards/can-deactivate.guard';
 import { Observable } from 'rxjs';
@@ -92,7 +92,7 @@ export class EventEditComponent implements OnInit, ComponentCanDeactivate {
     return discountFormControls.map((selected, i) => new EventCreationDiscountSaveModel(this.discounts[i].summary, selected.value))
   }
 
-  private mapDiscountsToSummary(discountSaveModelList: DiscountSaveModel[]) {
-    return discountSaveModelList.map(d => new DiscountReadModel(d.summary, false));
+  private mapDiscountsToSummary(discountSaveModelList: Discount[]) {
+    return discountSaveModelList.map(d => new DiscountReadModel(d.name, false));
   }
 }

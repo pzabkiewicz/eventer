@@ -13,9 +13,9 @@ const routes: Routes = [
     component: DiscountsComponent, 
     canActivate: [AuthGuard],
     children: [
-      { path: 'new', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] },
-      { path: ':id', component: DiscountDetailsComponent },
-      { path: ':id/edit', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] }
+      { path: 'edit', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: ':id/edit', component: DiscountEditComponent, canDeactivate: [CanDeactivateGuard] },
+      { path: ':id', component: DiscountDetailsComponent }
     ]
   }
 ];
