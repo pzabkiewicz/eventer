@@ -9,6 +9,7 @@ import { DiscountDetailsComponent } from './discount-details/discount-details.co
 import { MaterialModule } from '../material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MaterialModule,
     DiscountsRoutingModule

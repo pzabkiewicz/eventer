@@ -1,37 +1,40 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Discount } from '../model/discount';
-import { Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { DiscountMockService } from './discount-mock.service';
 
-@Injectable({providedIn: 'root'})
-export class DiscountService {
+export interface IDiscountService {
 
-    private seq: number = 0;
+    getDiscount(id: number): Observable<Discount>;
 
-    discountsChanged: Subject<Discount[]> = new Subject<Discount[]>();
+    getDiscounts(): Observable<Discount[]>;
 
-    private discounts: Discount[] = [
-        new Discount("Students", 51, "%", "This is a discount for people who has valid student card.", this.seq++),
-        new Discount("Veteran of war", 75, "%", "This is a discount for people who fighted against an enemy to protect their country.", this.seq++),
-        new Discount("Women", 10, "abs", "Discount for beautiful girls.", this.seq++)
-    ];
+    save(newDiscount: Discount): Observable<Discount>;
 
-    getDiscount(id: number): Discount {
-        return this.discounts.find(d => d.id == id);
+    update(discount: Discount): Observable<Discount>;
+
+}
+
+@Injectable({ providedIn: 'root' })
+export class DiscountService implements IDiscountService {
+    
+    /** Replace with {@link DiscountBackendService} if you want to use backend server */
+    constructor(private discountService: DiscountMockService) {}
+
+    getDiscount(id: number): Observable<Discount> {
+        return this.discountService.getDiscount(id);
+    }
+    
+    getDiscounts(): Observable<Discount[]> {
+        return this.discountService.getDiscounts();
     }
 
-    getDiscounts() {
-        return this.discounts.slice();
+    save(newDiscount: Discount): Observable<Discount> {
+        return this.discountService.save(newDiscount);
     }
 
-    save(discount: Discount) {
-        discount.id = this.seq++;
-        this.discounts.push(discount);
-        this.discountsChanged.next(this.discounts.slice());
+    update(discount: Discount): Observable<Discount> {
+        return this.discountService.update(discount);
     }
 
-    update(discount: Discount) {
-        const index = this.discounts.findIndex(d => d.id == discount.id);
-        this.discounts[index] = discount;
-        this.discountsChanged.next(this.discounts.slice());
-    }
 }

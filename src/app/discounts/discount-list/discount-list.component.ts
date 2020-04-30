@@ -1,7 +1,8 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { DiscountSummary } from 'src/app/model/discount-summary';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Discount } from 'src/app/model/discount';
+import { Observable, of } from 'rxjs';
+import { DiscountService } from '../discount.service';
 
 @Component({
   selector: 'app-discount-list',
@@ -10,13 +11,14 @@ import { Discount } from 'src/app/model/discount';
 })
 export class DiscountListComponent implements OnInit {
 
-  @Input()
-  discounts: Discount[] = [];
+  discounts$: Observable<Discount[]> = of([]);
 
-  constructor(private router: Router, 
+  constructor(private discountService: DiscountService,
+              private router: Router, 
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.discounts$ = this.discountService.getDiscounts();
   }
 
   onCreate() {

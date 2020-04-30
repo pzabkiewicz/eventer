@@ -9,10 +9,10 @@ import { EventService } from '../event.service';
 import { Router } from '@angular/router';
 import { EventSaveModel, EventCreationDiscountSaveModel } from 'src/app/model/event-save-model';
 import { Discount } from 'src/app/model/discount';
-import { DiscountService } from 'src/app/discounts/discount.service';
 import { ComponentCanDeactivate } from 'src/app/shared/guards/can-deactivate.guard';
 import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/shared/modals/dialog.service';
+import { DiscountService } from 'src/app/discounts/discount.service';
 
 class DiscountReadModel {
   constructor(public summary: string, public checked: boolean) {}
@@ -32,13 +32,13 @@ export class EventEditComponent implements OnInit, ComponentCanDeactivate {
               private router: Router,
               private eventService: EventService,
               private discountService: DiscountService,
-              private dialogService: DialogService) {
-    
-    this.discounts = this.mapDiscountsToSummary(this.discountService.getDiscounts());
-    this.initEventForm();
-  }
+              private dialogService: DialogService) {}
 
   ngOnInit() {
+    this.discountService.getDiscounts().subscribe(discounts => {
+      this.discounts = this.mapDiscountsToSummary(discounts);
+      this.initEventForm();
+    });
   }
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {

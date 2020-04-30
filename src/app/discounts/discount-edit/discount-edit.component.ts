@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DiscountService } from '../discount.service';
 import { Discount } from 'src/app/model/discount';
 import { ComponentCanDeactivate } from 'src/app/shared/guards/can-deactivate.guard';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, of, EMPTY, throwError } from 'rxjs';
 import { DialogService } from 'src/app/shared/modals/dialog.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { switchMap, catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-discount-edit',
@@ -15,6 +16,7 @@ import { Location } from '@angular/common';
 })
 export class DiscountEditComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
+  subscription: Subscription = null;
   edit: boolean = false;
   discount: Discount = null;
   discountForm: FormGroup;
@@ -29,26 +31,32 @@ export class DiscountEditComponent implements OnInit, OnDestroy, ComponentCanDea
     private routeLocation: Location) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe( (paramMap: ParamMap) => {
-      const discountId = paramMap.get('id');
-      this.edit = discountId != null;
-      if (this.edit) {
-        this.discount = this.discountService.getDiscount(+discountId);
-      }
-      this.initForm();
-    });
+    this.initForm();
+    this.subscription = this.route.paramMap
+      .pipe(
+        switchMap((paramMap: ParamMap) => {
+          const discountId = paramMap.get('id');
+          this.edit = discountId != null;
+          if (this.edit) {
+            return this.discountService.getDiscount(+discountId);
+          } 
+          return EMPTY;
+        })
+      ).subscribe(discount => {
+        this.discount = discount;
+        this.initForm();
+      });
   }
 
   ngOnDestroy(): void {
     this.discountForm.reset();
+    this.subscription.unsubscribe();
   }
 
   canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
     if (this.discountForm.pristine) {
       return true;
     }
-
-    const url: string = this.router.url;
     return this.dialogService.confirm("Would you like to discard the changes?");
   }
 
@@ -66,13 +74,17 @@ export class DiscountEditComponent implements OnInit, OnDestroy, ComponentCanDea
 
     if (this.edit) {
       discount.id = this.discount.id;
-      this.discountService.update(discount);
+      this.discountService.update(discount)
+        .subscribe(discount => this.handleOnSaveResult(discount));
     } else {
-      this.discountService.save(discount);  
+      this.discountService.save(discount)
+        .subscribe(discount => this.handleOnSaveResult(discount));  
     }
+  }
 
-    this.discountForm.reset();
-    this.router.navigate([`/discounts/${discount.id}`]);
+  handleOnSaveResult(discount: Discount) {   
+      this.discountForm.reset();
+      this.router.navigate([`/discounts/${discount.id}`]);  
   }
 
   isSaveBtnDisabled(): boolean {

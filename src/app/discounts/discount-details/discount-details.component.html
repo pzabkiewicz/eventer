@@ -1,14 +1,14 @@
 <mat-card fxLayout="column">
 
     <div class="discount-form__title" fxFlex="0 1 auto">
-        <h3>{{ discount.name }}</h3>
+        <h3>{{ discount?.name }}</h3>
     </div>
 
     <div fxFlex="0 1 100%">
         <p class="discount-details__prop-title">Description</p>
-        <p class="discount-details__prop">{{ discount.description }}</p>
+        <p class="discount-details__prop">{{ discount?.description }}</p>
         <p class="discount-details__prop-title">Discount</p>
-        <p class="discount-details__prop">{{ discount.amount }}</p>
+        <p class="discount-details__prop">{{ discount?.amount }}</p>
     </div>
 
     <div class="discount-form__actions" 
